@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Contact = require("../modules/Contact");
+const Contact = require("../models/Contact");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 exports.addNewContact = catchAsyncErrors(async (req, res, next) => {

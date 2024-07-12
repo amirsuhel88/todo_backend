@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Todo = require("../modules/Todo");
+const Todo = require("../models/Todo");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-router.post("/todo", async (req, res) => {
+exports.addNewTodo = catchAsyncErrors(async (req, res, next) => {
   try {
     const newTodo = new Todo(req.body);
     await newTodo.save().then((savedTodo) => {
@@ -14,5 +15,3 @@ router.post("/todo", async (req, res) => {
     res.status(500).json({ msg: "Unable to save new Todo" });
   }
 });
-
-module.exports = router;
