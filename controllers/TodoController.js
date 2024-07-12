@@ -15,3 +15,8 @@ exports.addNewTodo = catchAsyncErrors(async (req, res, next) => {
     res.status(500).json({ msg: "Unable to save new Todo" });
   }
 });
+
+exports.allTodos = catchAsyncErrors(async (req, res, next) => {
+  const allTodos = await Todo.find();
+  return res.status(200).json({ data: allTodos });
+});
