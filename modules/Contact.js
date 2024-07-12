@@ -24,6 +24,6 @@ const contactSchema = new mongoose.Schema({
   age: { type: Number, required: false },
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
+const Contact = mongoose.model("contacts", contactSchema);
 
 module.exports = Contact;

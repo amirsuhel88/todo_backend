@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Contact = require("../modules/Contact");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-router.post("/contact", async (req, res) => {
+exports.addNewContact = catchAsyncErrors(async (req, res, next) => {
   try {
     const newContact = new Contact(req.body);
     await newContact.save().then((savedContact) => {
@@ -14,5 +15,3 @@ router.post("/contact", async (req, res) => {
     res.status(500).json({ msg: "Unable to save new contact" });
   }
 });
-
-module.exports = router;
