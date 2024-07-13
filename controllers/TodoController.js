@@ -26,3 +26,11 @@ exports.deleteTodo = catchAsyncErrors(async (req, res, next) => {
   await Todo.findByIdAndDelete(id);
   res.status(200).json({ msg: "Todo has been deleted." });
 });
+
+//find todo by id
+exports.findTodo = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+  const resultTodo = await Todo.findById(id);
+  res.status(200).json({ data: resultTodo });
+  console.log(resultTodo);
+});
